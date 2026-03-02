@@ -73,7 +73,7 @@ void delete_handler(const char *path) {
   // returns 0 if successful
   int success = remove(path);
 
-  if (success != 0) {
+  if (success == 0) {
     printf("\n\nFile deleted successfully\n\n");
   } else {
     perror("Error deleting file");
@@ -81,12 +81,42 @@ void delete_handler(const char *path) {
   }
 }
 
+void rename_handler(const char *path, const char *new_name) {
+  char new_path[350];
 
+  char *last_slash = strrchr(path, '/');
 
-int main(int argc, char *argv[]) {
+  // same directory
+  if (last_slash == NULL) {
+    strcpy(new_path, new_name);
+  } else {
+    // calculate the length of the directory part, +1 because strcpy isn't 0 indexed
+    int directory_part_len = (int)(last_slash - path) + 1;
+
+    // copy path up to the last slash
+    strncpy(new_path, path, directory_part_len);
+    new_path[directory_part_len] = '\0';
+
+    strcat(new_path, new_name);
+  }
+
+  printf("Path: %s\nNew Path: %s\n", path, new_path);
+  
+  int success = rename(path, new_path);
+
+  if (success != 0) {
+    perror("Rename failed");
+    exit(EXIT_FAILURE);
+  }
+
+  printf("File renamed successfully");
+}
+
+int main(void) {
   printf("Which operation do you want to perform?\n");
   printf("Enter 'C' for Copy\n");
   printf("Enter 'M' for Move\n");
+  printf("Enter 'R' for rename\n");
   printf("Enter 'D' for delete\n");
 
   char command;
@@ -94,8 +124,8 @@ collect_command:
   scanf(" %c", &command);
   getchar(); // clear residue newline
 
-  if (command != 'C' && command != 'M' && command != 'D') {
-    printf("Invalid input try again\n");
+  if (command != 'C' && command != 'M' && command != 'R' && command != 'D') {
+    printf("Invalid input try again: ");
     goto collect_command;
   }
 
@@ -126,6 +156,17 @@ collect_command:
     fgets(path, sizeof(path), stdin);
     process_path(path);
     delete_handler(path);
+  }
+
+  if (command == 'R') {
+    printf("Enter the path of the file you want to rename: ");
+    fgets(path, sizeof(path), stdin);
+    char new_name[30];
+    printf("Enter the new name(include the file extension e.g 'new name.txt'): ");
+    fgets(new_name, sizeof(new_name), stdin);
+    process_path(path);
+    process_path(new_name);
+    rename_handler(path, new_name);
   }
 
   return 0;
