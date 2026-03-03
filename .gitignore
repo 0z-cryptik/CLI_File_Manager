@@ -8,3 +8,7 @@
 !*.c
 !*.h
 !*.gitignore
+
+#don't ignore README and LICENSE
+!*README.md
+!*LICENSE
