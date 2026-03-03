@@ -15,15 +15,15 @@ void remove_this_char(char *str, char character);
 // strips away '"', '\n' and changes '\' to '/'
 void process_path(char *path);
 
-// performs the copy operation
+// copies the file in path, pastes it in dest
 void copy_handler(const char *path, const char *dest);
 
-// performs the copy operation
+// moves the file in path to dest
 void move_handler(const char *path, const char *dest);
 
-// performs the copy operation
+// prenames the file in path to new_name
 void rename_handler(const char *path, const char *new_name);
 
-// performs the copy operation
+// deletes the file in path
 void delete_handler(const char *path);
 #endif
