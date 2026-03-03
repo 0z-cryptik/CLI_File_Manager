@@ -79,5 +79,5 @@ void rename_handler(const char *path, const char *new_name) {
     exit(EXIT_FAILURE);
   }
 
-  printf("File renamed successfully");
+  printf("\n\nFile renamed successfully\n\n");
 }
