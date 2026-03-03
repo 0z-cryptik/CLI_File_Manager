@@ -21,7 +21,7 @@ void copy_handler(const char *path, const char *dest);
 // moves the file in path to dest
 void move_handler(const char *path, const char *dest);
 
-// prenames the file in path to new_name
+// renames the file in path to new_name
 void rename_handler(const char *path, const char *new_name);
 
 // deletes the file in path
