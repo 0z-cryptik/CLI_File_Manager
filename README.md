@@ -25,7 +25,7 @@ You will need a C compiler (GCC, Clang, or MSVC) installed on your system.
 Open your terminal and run the following command to compile the source:
 
 ```bash
-gcc -o main main.c file_manager_funcs.c utils_funcs.c
+gcc -o main main.c file_manager_funcs.c
 ```
 
 ### Run the program
