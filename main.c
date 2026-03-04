@@ -32,7 +32,7 @@ collect_command:
   if (command == 'M') {
     printf("Enter the path of the file you want to move: ");
     fgets(path, sizeof(path), stdin);
-    printf("Enter the path you want it to be moved to: ");
+    printf("Enter the path (include desired filename and ext) you want it to be moved to: ");
     fgets(dest, sizeof(dest), stdin);
     process_path(path);
     process_path(dest);
