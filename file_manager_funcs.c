@@ -1,5 +1,4 @@
 #include "file_manager.h"
-#include <stdbool.h>
 
 void process_path(char *path) {
   int len = strlen(path);
