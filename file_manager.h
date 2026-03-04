@@ -6,13 +6,7 @@
 #include <string.h>
 #define MAX_PATH_LEN 350
 
-// changes '\\' to '/' for windows computers
-void change_backslash(char *path);
-
-// removes character from str
-void remove_this_char(char *str, char character);
-
-// strips away '"', '\n' and changes '\' to '/'
+// strips away '"', '\'', '\r', '\n' and changes '\' to '/'
 void process_path(char *path);
 
 // copies the file in path, pastes it in dest
